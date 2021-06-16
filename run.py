@@ -19,6 +19,15 @@ def students():
 def add():  
     return render_template("add.html")
 
+@app.route('/delete')
+def delete():  
+    return render_template("delete.html")
+
+@app.route("/update")
+def update():
+    return render_template("update.html")
+
+
 @app.route("/savedetails",methods = ["POST","GET"])  
 def savedetails(): 
     details = db.details
@@ -38,7 +47,7 @@ def savedetails():
            "department":department
            }
            details.insert_one(personDocument)
-           print("record updated")
+           print("Details Saved")
         except:  
            msg = "We can not add the Student to the list"  
         finally:  
@@ -65,6 +74,16 @@ def findstudent():
             if key == 'department': department = val 
 
     return render_template("findstudent.html", name=name , email=email , roll_no=roll_no , department=department )  
+
+@app.route("/action4",methods = ["POST","GET"])  
+def delet():
+    details = db.details
+    if request.method == "POST":
+        delete = request.form["delete"]
+        userid = ObjectId(delete)
+        db.details.remove({"_id":userid})
+    return (" ID Deleted")    
+
 
 if __name__ == "__main__":  
     app.run(debug = True)  
