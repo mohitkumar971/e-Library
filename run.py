@@ -39,12 +39,23 @@ def savedetails():
            roll_no = request.form["roll_no"]  
            email = request.form["email"]  
            department = request.form["department"]  
+           ibook = request.form["ibook"]  
+           idate = request.form["idate"]  
+           rbook = request.form["rbook"]  
+           rdate = request.form["rdate"]  
+           
            personDocument={
 
            "name": name,
            "roll_no": roll_no,
            "email": email,
-           "department":department
+           "department": department,
+           "ibook" : ibook, 
+           "idate" : idate,
+           "rbook" : rbook,
+           "rdate" : rdate
+
+
            }
            details.insert_one(personDocument)
            print("Details Saved")
@@ -66,14 +77,22 @@ def findstudent():
         email=""
         roll_no=""
         department=""
+        ibook=""
+        idate=""
+        rbook=""
+        rdate=""
         
         for key, val in rows.items():
             if key == 'name': name = val
             if key == 'roll_no': roll_no = val
             if key == 'email': email = val
             if key == 'department': department = val 
+            if key == 'ibook': ibook = val 
+            if key == 'idate': idate = val 
+            if key == 'rbook': rbook = val 
+            if key == 'rdate': rdate = val 
 
-    return render_template("findstudent.html", name=name , email=email , roll_no=roll_no , department=department )  
+    return render_template("findstudent.html", name=name , email=email , roll_no=roll_no , department=department, ibook = ibook,idate = idate , rbook = rbook , rdate = rdate )  
 
 @app.route("/action4",methods = ["POST","GET"])  
 def delet():
