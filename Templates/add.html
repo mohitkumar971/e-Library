@@ -3,23 +3,28 @@
 <head>  
     <title>Add Student</title>  
 </head>  
-<body>  
-    <h2>Student Information</h2>   
-    <h3>To add a fresh Student Data</h3>
+<body>
+<div>  
+    <div>
+        <h2>Student Information</h2>   
+        <h3>To add a fresh Student Data</h3>
+    </div>
+
     <form action = "/savedetails" method="post">  
-    <table>  
-        <tr><td>Name</td><td><input type="text" name="name"></td>
-        </tr>
-        <tr><td>Roll_no.</td><td><input type="number" name="roll_no"></td>
-        </tr>  
+    <div>
+        <div>
+        <table>  
+        <tr><td>Name</td><td><input type="text" name="name"></td></tr>
+        <tr><td>Roll_no.</td><td><input type="number" name="roll_no"></td></tr>  
         <tr><td>Email</td><td><input type="email" name="email"></td></tr>  
         <tr><td>Department</td><td><input type="text" name="department"></td></tr>  
-        <tr><td>Book Issued</td><td><input type="text" name="ibook"></td><td><input type="date" name="idate" ></td>
-        </tr>
-        <tr><td>Book Returned</td><td><input type="text" name="rbook"></td><td><input type="date" name="rdate" > </td>
-        </tr>
+        <tr><td>Book Issued</td><td><input type="text" name="ibook"></td><td><input type="date" name="idate" ></td></tr>
+        <tr><td>Book Returned</td><td><input type="text" name="rbook"></td><td><input type="date" name="rdate" > </td></tr>
         <tr><td><input type="submit" value="Submit"></td></tr>  
-    </table>  
-    </form>  
+        </table>  
+        </form><br>
+        </div>
+    </div>
+</div>
 </body>  
 </html>  

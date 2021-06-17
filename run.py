@@ -19,14 +19,13 @@ def students():
 def add():  
     return render_template("add.html")
 
-@app.route('/delete')
-def delete():  
-    return render_template("delete.html")
-
 @app.route("/update")
 def update():
     return render_template("update.html")
 
+@app.route('/delete')
+def delete():  
+    return render_template("delete.html")
 
 @app.route("/savedetails",methods = ["POST","GET"])  
 def savedetails(): 
@@ -45,7 +44,6 @@ def savedetails():
            rdate = request.form["rdate"]  
            
            personDocument={
-
            "name": name,
            "roll_no": roll_no,
            "email": email,
@@ -54,8 +52,6 @@ def savedetails():
            "idate" : idate,
            "rbook" : rbook,
            "rdate" : rdate
-
-
            }
            details.insert_one(personDocument)
            print("Details Saved")
@@ -93,6 +89,37 @@ def findstudent():
             if key == 'rdate': rdate = val 
 
     return render_template("findstudent.html", name=name , email=email , roll_no=roll_no , department=department, ibook = ibook,idate = idate , rbook = rbook , rdate = rdate )  
+
+@app.route("/action2",methods = ["POST","GET"])
+def action2():
+    details=db.details
+    if request.method == "POST":
+
+        search = request.form["id"]
+        userid = ObjectId(search)
+        #rows = details.find_one({"_id": userid})
+        
+        try:
+
+            ibook = request.form["ibook"]  
+            idate = request.form["idate"]  
+            rbook = request.form["rbook"]  
+            rdate = request.form["rdate"]  
+           
+            Document={
+            "ibook" : ibook, 
+            "idate" : idate,
+            "rbook" : rbook,
+            "rdate" : rdate
+            }  
+
+
+            details.update_one({"_id": userid}, {"$set": { "ibook":ibook ,"idate": idate, "rbook": rbook, "rdate": rdate }})
+        except:
+            msg = "We can not add the Student to the list"
+        finally:  
+            return render_template("updated.html") 
+
 
 @app.route("/action4",methods = ["POST","GET"])  
 def delet():
