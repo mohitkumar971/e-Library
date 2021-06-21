@@ -128,7 +128,7 @@ def delet():
         delete = request.form["delete"]
         userid = ObjectId(delete)
         db.details.remove({"_id":userid})
-    return (" ID Deleted")    
+    return (" ID Deleted ")    
 
 
 if __name__ == "__main__":  
