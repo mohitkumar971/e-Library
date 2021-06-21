@@ -97,7 +97,6 @@ def action2():
 
         search = request.form["id"]
         userid = ObjectId(search)
-        #rows = details.find_one({"_id": userid})
         
         try:
 
@@ -120,7 +119,6 @@ def action2():
         finally:  
             return render_template("updated.html") 
 
-
 @app.route("/action4",methods = ["POST","GET"])  
 def delet():
     details = db.details
@@ -129,7 +127,6 @@ def delet():
         userid = ObjectId(delete)
         db.details.remove({"_id":userid})
     return (" ID Deleted ")    
-
 
 if __name__ == "__main__":  
     app.run(debug = True)  
